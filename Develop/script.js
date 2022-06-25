@@ -94,16 +94,19 @@ function generatePassword() {
   return newPwd;
 }
 
+// uses Fisher-Yates shuffling algorithm and returns a password of correct length
 function shuffle(array, len) {
   var r = array.length, temp, index;
+  // while there remains elemnts to be shuffled
   while (r) {
-   
+    // randomly pick a remaining element
     index = Math.floor(Math.random() * r--);
-
+    // swap with current element
     temp = array[r];
     array[r] = array[index];
     array[index] = temp;
   }
+  // removes extra letters from password
   array = array.substring(0, len);
 
   return array;

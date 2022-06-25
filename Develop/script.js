@@ -43,6 +43,46 @@ function generatePassword() {
   while (!Object.values(charChoices).includes(true)) {
     charChoices = getCharChoices();
   }
+
+  var specialChars = "!@#$%^&*()<>[]{}-_=+`~;:";
+  var nums = "0123456789";
+  var lowerCharacters = "abcdefghijklmnopqrstuvwxyz";
+  var upperCharacters = lowerCharacters.toUpperCase();
+
+  var charTypeCount = 0;
+  for(const choices in charChoices) {
+    if(charChoices[choices] === true) {
+      charTypeCount++;
+    }
+  }
+
+  var tempPwd = "";
+  var rand  = 0;
+  for (var i = 0; i < passLen/charTypeCount; i++) {
+    if (charChoices.specChars) {
+      rand = Math.floor(Math.random() * specialChars.length);
+      tempPwd += specialChars.substring(rand, rand + 1);
+    }
+    if (charChoices.numChars) {
+      rand = Math.floor(Math.random() * nums.length);
+      tempPwd += nums.substring(rand, rand + 1);
+    }
+    if (charChoices.lowerChars) {
+      rand = Math.floor(Math.random() * lowerCharacters.length);
+      tempPwd += lowerCharacters.substring(rand, rand + 1);
+    }
+    if (charChoices.upperChars) {
+      rand = Math.floor(Math.random() * upperCharacters.length);
+      tempPwd += upperCharacters.substring(rand, rand + 1);
+    }
+    
+   
+  }
+
+  var newPass = ""; 
+
+  return tempPwd;
+
   
 }
 // Write password to the #password input

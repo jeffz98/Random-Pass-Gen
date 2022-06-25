@@ -4,10 +4,12 @@
 
 https://jeffz98.github.io/Random-Pass-Gen/
 
-![GIF demo of the application](./assets/images/demo.gif)
+## GIF demo
+
+![GIF demo of the application](./Assets/images/demo.gif)
 
 ## Screenshots
-![Screenshot of the application's landing page](./assets/images/PassGenSS.png)
+![Screenshot of the application's landing page](./Assets/images/PassGenSS.png)
 
 ### User Information
 - [LinkedIn](https://www.linkedin.com/in/jeffrey-zhang-52315522a/)

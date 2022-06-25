@@ -58,6 +58,7 @@ function generatePassword() {
 
   var tempPwd = "";
   var rand  = 0;
+
   for (var i = 0; i < passLen/charTypeCount; i++) {
     if (charChoices.specChars) {
       rand = Math.floor(Math.random() * specialChars.length);
@@ -78,12 +79,25 @@ function generatePassword() {
     
    
   }
-
-  var newPass = ""; 
-
-  return tempPwd;
+  var newPwd = shuffle(tempPwd, passLen);
+  return newPwd;
 
   
+}
+
+function shuffle(array, len) {
+  var r = array.length, temp, index;
+  while (r) {
+   
+    index = Math.floor(Math.random() * r--);
+
+    temp = array[r];
+    array[r] = array[index];
+    array[index] = temp;
+  }
+  array = array.substring(0, len);
+
+  return array;
 }
 // Write password to the #password input
 function writePassword() {

@@ -1,10 +1,10 @@
-// Assignment code here
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+// prompts user for password length, will continue prompting if outside 8-128 chars
 function getPasswordLength() {
+  // loops once no matter what, continues to loop if outside char range
   do {
     var pwdLen = Number(prompt("How many characters would you like your password to contain?"));
     if (isNaN(pwdLen) || pwdLen == null) {
@@ -19,6 +19,7 @@ function getPasswordLength() {
   return pwdLen;
 }
 
+// stores user's choices for character types to be used in password
 function getCharChoices() {
   var hasSpecChars = false, hasNumChars = false, hasLowerChars = false, hasUpperChars = false;
   alert("Please choose at least one character type.");
@@ -27,6 +28,7 @@ function getCharChoices() {
   hasLowerChars = confirm("Click OK to confirm including lowercase characters.");
   hasUpperChars = confirm("Click OK to confirm including uppercase characters.");
 
+// returns key-value pairs
   return {
     specChars: hasSpecChars,
     numChars: hasNumChars,
@@ -36,19 +38,26 @@ function getCharChoices() {
 
 }
 
+// Function that generates password based on user preference
 function generatePassword() {
   var passLen = getPasswordLength();
   var charChoices = getCharChoices();
 
+  // loop character type choices to user until they select at least 1
   while (!Object.values(charChoices).includes(true)) {
     charChoices = getCharChoices();
   }
 
+  // most possible special chars in string
   var specialChars = "!@#$%^&*()<>[]{}-_=+`~;:";
+  // store 0-9
   var nums = "0123456789";
+  // store lower case chars
   var lowerCharacters = "abcdefghijklmnopqrstuvwxyz";
+  // store upper case chars
   var upperCharacters = lowerCharacters.toUpperCase();
-
+  
+  // count number of char types selected by user
   var charTypeCount = 0;
   for(const choices in charChoices) {
     if(charChoices[choices] === true) {
@@ -59,6 +68,8 @@ function generatePassword() {
   var tempPwd = "";
   var rand  = 0;
 
+  // generates a password based on user selected type, the order is not random here 
+  // and is over the length required in some cases
   for (var i = 0; i < passLen/charTypeCount; i++) {
     if (charChoices.specChars) {
       rand = Math.floor(Math.random() * specialChars.length);
@@ -76,13 +87,11 @@ function generatePassword() {
       rand = Math.floor(Math.random() * upperCharacters.length);
       tempPwd += upperCharacters.substring(rand, rand + 1);
     }
-    
-   
   }
+
+  // generates a new password
   var newPwd = shuffle(tempPwd, passLen);
   return newPwd;
-
-  
 }
 
 function shuffle(array, len) {
